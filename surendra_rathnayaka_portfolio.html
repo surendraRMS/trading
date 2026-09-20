@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surendra Rathnayaka | Personal Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            500: '#06b6d4',
+                            600: '#0284c7',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+
+        /* Gradient Animation Glow */
+        .glow-effect {
+            position: relative;
+        }
+        .glow-effect::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .glow-effect:hover::before {
+            opacity: 0.6;
+            filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-cyan-500 selection:text-slate-900 overflow-x-hidden">
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-lg text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    SR
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-white block">Surendra</span>
+                    <span class="text-xs font-semibold text-cyan-400 tracking-widest uppercase">Portfolio</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-300">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+                <a href="#videos" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-play text-xs text-cyan-400"></i> Videos
+                </a>
+                <a href="#photos" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-image text-xs text-cyan-400"></i> Photo Gallery
+                </a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+            </nav>
+
+            <a href="#contact" class="hidden md:inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105 transition-all">
+                Get in Touch
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg focus:outline-none" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-slate-800/80 px-4 pt-3 pb-6 space-y-3">
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-cyan-400">About</a>
+            <a href="#videos" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-cyan-400">Videos</a>
+            <a href="#photos" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-cyan-400">Photo Gallery</a>
+            <a href="#contact" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-cyan-400">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden flex items-center min-h-[90vh]">
+        <!-- Background Decorative Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-500/10 to-blue-600/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card text-cyan-400 text-xs font-semibold tracking-wider uppercase">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                        Welcome to my creative space
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Hi, I'm <br class="hidden sm:inline" />
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500">
+                            Surendra Rathnayaka
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Content Creator, Media Enthusiast & Digital Visualizer. Explore my dedicated library of curated videos, photo stories, and professional creative projects all in one place.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#videos" class="px-6 py-3.5 rounded-xl font-semibold text-slate-900 bg-cyan-400 hover:bg-cyan-300 transition-all shadow-lg shadow-cyan-400/20 hover:scale-105 flex items-center gap-2">
+                            <i class="fa-solid fa-play text-sm"></i> Watch My Videos
+                        </a>
+                        <a href="#photos" class="px-6 py-3.5 rounded-xl font-semibold text-slate-200 glass-card hover:bg-slate-800 transition-all border border-slate-700/60 hover:scale-105 flex items-center gap-2">
+                            <i class="fa-solid fa-images text-sm text-cyan-400"></i> View Gallery
+                        </a>
+                    </div>
+
+                    <!-- Quick Metrics -->
+                    <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-800/80 max-w-md mx-auto lg:mx-0 text-center lg:text-left">
+                        <div>
+                            <span class="block text-2xl font-bold text-white">25+</span>
+                            <span class="text-xs text-slate-400">Curated Videos</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-bold text-white">100+</span>
+                            <span class="text-xs text-slate-400">Captured Photos</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-bold text-white">100%</span>
+                            <span class="text-xs text-slate-400">Original Visuals</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-sm sm:max-w-md">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-3xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                        <div class="relative glass-card rounded-3xl p-4 overflow-hidden border border-slate-700/50 shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800" alt="Surendra Rathnayaka Profile" class="w-full h-80 sm:h-96 object-cover rounded-2xl shadow-inner">
+                            <div class="p-4 text-center">
+                                <h3 class="text-lg font-bold text-white">Surendra Rathnayaka</h3>
+                                <p class="text-xs text-cyan-400 font-medium mt-0.5">Visual Storyteller & Creator</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos" class="py-20 bg-slate-900/60 relative border-t border-b border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-2">
+                        <i class="fa-solid fa-film"></i> Embedded Cinema Experience
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Featured Videos</h2>
+                    <p class="text-slate-400 text-sm mt-1">Watch all videos right here seamlessly without exiting the platform.</p>
+                </div>
+
+                <!-- Search & Filter Controls -->
+                <div class="flex flex-col sm:flex-row items-center gap-3">
+                    <div class="relative w-full sm:w-64">
+                        <input type="text" id="video-search" placeholder="Search videos..." class="w-full bg-slate-800/80 border border-slate-700 text-xs text-slate-200 rounded-xl pl-9 pr-4 py-2.5 focus:outline-none focus:border-cyan-500 transition-colors">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-xs text-slate-400"></i>
+                    </div>
+                    <div class="flex gap-1 bg-slate-800/80 p-1 rounded-xl border border-slate-700/80 w-full sm:w-auto overflow-x-auto">
+                        <button class="video-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-white bg-cyan-500 transition-all" data-category="all">All</button>
+                        <button class="video-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all" data-category="tech">Tech</button>
+                        <button class="video-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all" data-category="travel">Travel</button>
+                        <button class="video-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all" data-category="creative">Creative</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Active Embedded Video Player Frame -->
+            <div class="glass-card rounded-2xl overflow-hidden border border-slate-700/60 p-3 sm:p-5 mb-12 shadow-2xl">
+                <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-inner">
+                    <iframe id="main-video-player" class="w-full h-full border-0" src="https://www.youtube-nocookie.com/embed/LXb3EKWsInQ?enablejsapi=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="mt-4 flex flex-col md:flex-row md:items-center justify-between gap-3 px-2">
+                    <div>
+                        <span id="player-category" class="inline-block px-2.5 py-0.5 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-semibold mb-1">Creative</span>
+                        <h3 id="player-title" class="text-xl font-bold text-white">Exploring Visual Aesthetics in Digital Design</h3>
+                        <p id="player-description" class="text-xs text-slate-400 mt-1">A deep dive into visual composition and storytelling through video editing.</p>
+                    </div>
+                    <div class="flex items-center gap-3 self-end md:self-center">
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-clock mr-1"></i> Currently Playing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Cards Grid -->
+            <div id="video-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Video items injected by JS -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Photos Section -->
+    <section id="photos" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-2">
+                        <i class="fa-solid fa-camera"></i> Still Photography
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Photo Gallery</h2>
+                    <p class="text-slate-400 text-sm mt-1">High-definition captures categorized independently from video work.</p>
+                </div>
+
+                <!-- Photo Filter Tabs -->
+                <div class="flex gap-1 bg-slate-800/80 p-1 rounded-xl border border-slate-700/80 overflow-x-auto">
+                    <button class="photo-filter-btn px-4 py-2 rounded-lg text-xs font-medium text-white bg-cyan-500 transition-all" data-photo-cat="all">All Photos</button>
+                    <button class="photo-filter-btn px-4 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all" data-photo-cat="nature">Nature</button>
+                    <button class="photo-filter-btn px-4 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all" data-photo-cat="urban">Urban</button>
+                    <button class="photo-filter-btn px-4 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all" data-photo-cat="portraits">Portraits</button>
+                </div>
+            </div>
+
+            <!-- Photo Grid -->
+            <div id="photo-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Photo Card 1 -->
+                <div class="photo-card glass-card rounded-2xl overflow-hidden group border border-slate-800 hover:border-cyan-500/50 transition-all duration-300" data-category="nature">
+                    <div class="relative overflow-hidden aspect-square">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800" alt="Mountain View" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                            <div>
+                                <span class="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Nature</span>
+                                <h4 class="text-lg font-bold text-white">Serene Mountain Lake</h4>
+                                <p class="text-xs text-slate-300 mt-1">Captured during high altitude sunrise.</p>
+                            </div>
+                        </div>
+                        <button class="open-photo-modal absolute top-3 right-3 bg-slate-900/80 text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-cyan-500" data-src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1200" data-title="Serene Mountain Lake">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Photo Card 2 -->
+                <div class="photo-card glass-card rounded-2xl overflow-hidden group border border-slate-800 hover:border-cyan-500/50 transition-all duration-300" data-category="urban">
+                    <div class="relative overflow-hidden aspect-square">
+                        <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&q=80&w=800" alt="Urban Lights" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                            <div>
+                                <span class="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Urban</span>
+                                <h4 class="text-lg font-bold text-white">Metropolitan Neon Lights</h4>
+                                <p class="text-xs text-slate-300 mt-1">Night photography exploring cityscapes.</p>
+                            </div>
+                        </div>
+                        <button class="open-photo-modal absolute top-3 right-3 bg-slate-900/80 text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-cyan-500" data-src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&q=80&w=1200" data-title="Metropolitan Neon Lights">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Photo Card 3 -->
+                <div class="photo-card glass-card rounded-2xl overflow-hidden group border border-slate-800 hover:border-cyan-500/50 transition-all duration-300" data-category="portraits">
+                    <div class="relative overflow-hidden aspect-square">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800" alt="Studio Portrait" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                            <div>
+                                <span class="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Portraits</span>
+                                <h4 class="text-lg font-bold text-white">Cinematic Lighting Portrait</h4>
+                                <p class="text-xs text-slate-300 mt-1">High-contrast studio session.</p>
+                            </div>
+                        </div>
+                        <button class="open-photo-modal absolute top-3 right-3 bg-slate-900/80 text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-cyan-500" data-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1200" data-title="Cinematic Lighting Portrait">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Photo Card 4 -->
+                <div class="photo-card glass-card rounded-2xl overflow-hidden group border border-slate-800 hover:border-cyan-500/50 transition-all duration-300" data-category="nature">
+                    <div class="relative overflow-hidden aspect-square">
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=800" alt="Mist Forest" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                            <div>
+                                <span class="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Nature</span>
+                                <h4 class="text-lg font-bold text-white">Misty Redwood Trail</h4>
+                                <p class="text-xs text-slate-300 mt-1">Early morning forest atmosphere.</p>
+                            </div>
+                        </div>
+                        <button class="open-photo-modal absolute top-3 right-3 bg-slate-900/80 text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-cyan-500" data-src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=1200" data-title="Misty Redwood Trail">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Photo Card 5 -->
+                <div class="photo-card glass-card rounded-2xl overflow-hidden group border border-slate-800 hover:border-cyan-500/50 transition-all duration-300" data-category="urban">
+                    <div class="relative overflow-hidden aspect-square">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800" alt="Architecture" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                            <div>
+                                <span class="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Urban</span>
+                                <h4 class="text-lg font-bold text-white">Glass Skyscraper Angles</h4>
+                                <p class="text-xs text-slate-300 mt-1">Geometric architectural study.</p>
+                            </div>
+                        </div>
+                        <button class="open-photo-modal absolute top-3 right-3 bg-slate-900/80 text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-cyan-500" data-src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200" data-title="Glass Skyscraper Angles">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Photo Card 6 -->
+                <div class="photo-card glass-card rounded-2xl overflow-hidden group border border-slate-800 hover:border-cyan-500/50 transition-all duration-300" data-category="portraits">
+                    <div class="relative overflow-hidden aspect-square">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" alt="Male Portrait" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                            <div>
+                                <span class="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Portraits</span>
+                                <h4 class="text-lg font-bold text-white">Natural Light Studio</h4>
+                                <p class="text-xs text-slate-300 mt-1">Monochrome expression work.</p>
+                            </div>
+                        </div>
+                        <button class="open-photo-modal absolute top-3 right-3 bg-slate-900/80 text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-cyan-500" data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1200" data-title="Natural Light Studio">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-slate-900/60 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-3xl p-8 border border-slate-700/60 relative">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-16 h-16 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl font-bold">
+                                SR
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Surendra Rathnayaka</h3>
+                                <p class="text-xs text-cyan-400">Digital Creator & Content Developer</p>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            I am passionate about building engaging visual narratives. Whether it's producing video series, capturing fine detail in photography, or creating digital media, my goal is to deliver clean and captivating content.
+                        </p>
+
+                        <!-- Expertise Tags -->
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Key Expertise</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs border border-slate-700">Video Editing</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs border border-slate-700">Cinematography</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs border border-slate-700">Photo Color Grading</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs border border-slate-700">Content Strategy</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs border border-slate-700">Digital Media</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest">
+                        <i class="fa-solid fa-user"></i> About Me
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Creating Visual Experiences That Inspire</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Welcome to my personal platform. I designed this space specifically to organize my video productions and high-resolution photo gallery separately, ensuring you enjoy a seamless viewing experience without standard web clutter.
+                    </p>
+
+                    <div class="grid sm:grid-cols-2 gap-4 pt-4">
+                        <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-800">
+                            <i class="fa-solid fa-video text-cyan-400 text-xl mb-2"></i>
+                            <h4 class="text-base font-bold text-white">Video Library</h4>
+                            <p class="text-xs text-slate-400 mt-1">Curated YouTube streams playable directly within embedded frames.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-800">
+                            <i class="fa-solid fa-camera-retro text-cyan-400 text-xl mb-2"></i>
+                            <h4 class="text-base font-bold text-white">Photo Showcase</h4>
+                            <p class="text-xs text-slate-400 mt-1">High-quality photography separated cleanly into dedicated grids.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-2">
+                    <i class="fa-solid fa-envelope"></i> Get In Touch
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Send Me a Message</h2>
+                <p class="text-slate-400 text-sm mt-1">Have a project or collaboration in mind? Feel free to reach out!</p>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-700/60 shadow-2xl">
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Your Name</label>
+                            <input type="text" required placeholder="John Doe" class="w-full bg-slate-900/80 border border-slate-700 text-sm text-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Your Email</label>
+                            <input type="email" required placeholder="john@example.com" class="w-full bg-slate-900/80 border border-slate-700 text-sm text-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500 transition-colors">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Subject</label>
+                        <input type="text" required placeholder="Project Collaboration / Inquiry" class="w-full bg-slate-900/80 border border-slate-700 text-sm text-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Message</label>
+                        <textarea rows="4" required placeholder="Write your message here..." class="w-full bg-slate-900/80 border border-slate-700 text-sm text-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500 transition-colors"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl font-bold text-slate-900 bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 transition-all shadow-lg shadow-cyan-500/20 hover:scale-[1.01]">
+                        Send Message
+                    </button>
+                </form>
+                
+                <!-- Notification message container -->
+                <div id="contact-feedback" class="hidden mt-4 p-4 rounded-xl text-center text-xs font-semibold"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 py-8 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-xs">
+                    SR
+                </div>
+                <span class="text-xs text-slate-400">© 2026 Surendra Rathnayaka. All rights reserved.</span>
+            </div>
+            
+            <div class="flex gap-4 text-slate-400 text-base">
+                <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Preview Modal -->
+    <div id="photo-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center">
+            <button id="close-modal" class="absolute -top-12 right-0 text-slate-300 hover:text-white text-2xl p-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="modal-img" src="" alt="Enlarged preview" class="max-w-full max-h-[80vh] object-contain rounded-xl border border-slate-800 shadow-2xl">
+            <p id="modal-title" class="text-sm font-semibold text-white mt-4 text-center"></p>
+        </div>
+    </div>
+
+    <script>
+        // Video Dataset
+        const videos = [
+            {
+                id: 'LXb3EKWsInQ',
+                title: 'Exploring Visual Aesthetics in Digital Design',
+                category: 'creative',
+                duration: '12:45',
+                description: 'A deep dive into visual composition and storytelling through video editing.'
+            },
+            {
+                id: 'dQw4w9WgXcQ',
+                title: 'Tech Innovations & Modern Workflows',
+                category: 'tech',
+                duration: '08:30',
+                description: 'Overview of modern visual tools and hardware for creators.'
+            },
+            {
+                id: 'tgbNymZ7vqY',
+                title: 'Scenic Drone Journey & Travel Highlights',
+                category: 'travel',
+                duration: '15:20',
+                description: 'Breathtaking 4K aerial shots and travel footage captured across locations.'
+            },
+            {
+                id: 'kJQP7kiw5Fk',
+                title: 'Cinematic Color Grading Masterclass',
+                category: 'creative',
+                duration: '10:15',
+                description: 'How to make your videos feel cinematic using dark cyan and moody tones.'
+            },
+            {
+                id: 'fJ9rUzIMcZQ',
+                title: 'Ultimate Content Creator Desk Setup',
+                category: 'tech',
+                duration: '06:40',
+                description: 'Detailed tour of my personal production environment and lighting setups.'
+            },
+            {
+                id: '3JZ_D3ELwOQ',
+                title: 'Uncharted Trails & Nature Vlog',
+                category: 'travel',
+                duration: '11:05',
+                description: 'Exploring remote trails and capturing natural wildlife landscapes.'
+            }
+        ];
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Video Grid Rendering
+        const videoGrid = document.getElementById('video-grid');
+        const mainPlayer = document.getElementById('main-video-player');
+        const playerTitle = document.getElementById('player-title');
+        const playerCat = document.getElementById('player-category');
+        const playerDesc = document.getElementById('player-description');
+
+        function renderVideos(items) {
+            videoGrid.innerHTML = '';
+            if (items.length === 0) {
+                videoGrid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 text-sm">No videos found matching criteria.</div>`;
+                return;
+            }
+
+            items.forEach(video => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between group cursor-pointer';
+                card.innerHTML = `
+                    <div>
+                        <div class="relative aspect-video overflow-hidden bg-slate-950">
+                            <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-cyan-500 text-slate-900 flex items-center justify-center text-lg shadow-lg shadow-cyan-500/30">
+                                    <i class="fa-solid fa-play ml-1"></i>
+                                </div>
+                            </div>
+                            <span class="absolute bottom-2 right-2 bg-slate-950/80 text-white text-[10px] font-semibold px-2 py-0.5 rounded">
+                                ${video.duration}
+                            </span>
+                        </div>
+                        <div class="p-4">
+                            <span class="text-[10px] uppercase tracking-wider font-bold text-cyan-400 block mb-1">${video.category}</span>
+                            <h4 class="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2">${video.title}</h4>
+                            <p class="text-xs text-slate-400 mt-1 line-clamp-2">${video.description}</p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <button class="w-full py-2 bg-slate-800 hover:bg-cyan-500 hover:text-slate-900 text-slate-200 text-xs font-semibold rounded-xl transition-all flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-play text-[10px]"></i> Play Video
+                        </button>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => {
+                    mainPlayer.src = `https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1`;
+                    playerTitle.textContent = video.title;
+                    playerCat.textContent = video.category.toUpperCase();
+                    playerDesc.textContent = video.description;
+                    
+                    // Smooth scroll to main player
+                    document.getElementById('videos').scrollIntoView({ behavior: 'smooth' });
+                });
+
+                videoGrid.appendChild(card);
+            });
+        }
+
+        renderVideos(videos);
+
+        // Video Filter & Search Logic
+        const filterBtns = document.querySelectorAll('.video-filter-btn');
+        const videoSearch = document.getElementById('video-search');
+
+        let currentCategory = 'all';
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-cyan-500', 'text-white');
+                    b.classList.add('text-slate-400');
+                });
+                btn.classList.add('bg-cyan-500', 'text-white');
+                btn.classList.remove('text-slate-400');
+
+                currentCategory = btn.getAttribute('data-category');
+                filterVideos();
+            });
+        });
+
+        videoSearch.addEventListener('input', filterVideos);
+
+        function filterVideos() {
+            const query = videoSearch.value.toLowerCase().trim();
+            const filtered = videos.filter(v => {
+                const matchesCat = currentCategory === 'all' || v.category === currentCategory;
+                const matchesSearch = v.title.toLowerCase().includes(query) || v.description.toLowerCase().includes(query);
+                return matchesCat && matchesSearch;
+            });
+            renderVideos(filtered);
+        }
+
+        // Photo Gallery Filtering
+        const photoBtns = document.querySelectorAll('.photo-filter-btn');
+        const photoCards = document.querySelectorAll('.photo-card');
+
+        photoBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                photoBtns.forEach(b => {
+                    b.classList.remove('bg-cyan-500', 'text-white');
+                    b.classList.add('text-slate-400');
+                });
+                btn.classList.add('bg-cyan-500', 'text-white');
+                btn.classList.remove('text-slate-400');
+
+                const cat = btn.getAttribute('data-photo-cat');
+
+                photoCards.forEach(card => {
+                    if (cat === 'all' || card.getAttribute('data-category') === cat) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Photo Modal Logic
+        const photoModal = document.getElementById('photo-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const closeModal = document.getElementById('close-modal');
+
+        document.querySelectorAll('.open-photo-modal').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const src = btn.getAttribute('data-src');
+                const title = btn.getAttribute('data-title');
+                modalImg.src = src;
+                modalTitle.textContent = title;
+                photoModal.classList.remove('hidden');
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            photoModal.classList.add('hidden');
+        });
+
+        photoModal.addEventListener('click', (e) => {
+            if (e.target === photoModal) {
+                photoModal.classList.add('hidden');
+            }
+        });
+
+        // Contact Form Handler
+        const contactForm = document.getElementById('contact-form');
+        const contactFeedback = document.getElementById('contact-feedback');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            contactFeedback.className = "mt-4 p-4 rounded-xl text-center text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+            contactFeedback.textContent = "Thank you! Your message has been sent successfully. Surendra will respond soon.";
+            contactFeedback.classList.remove('hidden');
+            contactForm.reset();
+
+            setTimeout(() => {
+                contactFeedback.classList.add('hidden');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
